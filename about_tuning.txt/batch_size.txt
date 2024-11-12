@@ -1,0 +1,24 @@
+Batch size-ul este un parametru important în antrenarea modelelor de învățare automată, în special în deep learning. Acesta se referă la numărul de eșantioane de antrenament pe care modelul le procesează înainte de a-și actualiza parametrii interni (cum ar fi greutățile) în timpul fiecărei iterații de antrenament. Iată o explicație detaliată a rolului batch size-ului și impactul acestuia asupra antrenării modelului:
+
+Puncte cheie:
+Definiția Batch Size-ului:
+
+În învățarea automată, modelul este antrenat folosind date împărțite în bucăți sau "batch-uri". Batch size-ul specifică câte mostre sunt utilizate într-o singură trecere prin rețea (o iterație).
+Efectul asupra antrenării modelului:
+
+Utilizarea memoriei: Un batch size mai mare necesită mai multă memorie (RAM/VRAM), deoarece mai multe date sunt procesate simultan. Acest aspect este deosebit de important atunci când se utilizează GPU-uri, care au o memorie limitată.
+Viteza de antrenare: Batch size-urile mai mari permit modelului să se antreneze mai repede, deoarece utilizează mai eficient capacitățile de procesare paralelă. Cu toate acestea, loturile mai mari necesită mai mult timp pentru a fi procesate în fiecare iterație, ceea ce poate anula acest avantaj.
+Stabilitatea și convergența:
+Batch size-uri mici pot introduce mai multă zgomot în actualizările gradientului, ceea ce duce la un proces de antrenare mai instabil, dar uneori poate ajuta modelul să iasă din minimele locale ale funcției de pierdere.
+Batch size-uri mari tind să producă actualizări mai line ale gradientului, ceea ce duce la o antrenare mai stabilă și de încredere. Cu toate acestea, loturile mari pot duce la supraantrenare și modelul poate rămâne blocat în minime locale, deoarece există mai puțină variație în actualizările greutăților.
+Compromisuri:
+
+Batch size-uri mici:
+Pro: Necesită mai puțină memorie, poate duce la o generalizare mai bună (mai puțin predispus la supraantrenare).
+Contra: Antrenarea este mai lentă din cauza utilizării mai puțin eficiente a procesării paralele, iar actualizările gradientului sunt mai zgomotoase, ceea ce poate duce la o învățare instabilă.
+Batch size-uri mari:
+Pro: Antrenare mai rapidă, actualizări mai line ale gradientului, utilizare mai eficientă a hardware-ului (în special GPU-uri).
+Contra: Necesită mai multă memorie, poate duce la supraantrenare sau la convergența către soluții mai puțin bune (minime locale).
+Valori uzuale:
+
+Valorile comune pentru batch size variază între 16, 32, 64 și 128, dar alegerea optimă depinde de disponibilitatea hardware-ului și de specificul sarcinii de antrenare.

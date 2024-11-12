@@ -1,0 +1,41 @@
+Learning rate (rata de învățare) este un parametru critic în procesul de antrenare al unui model de învățare automată, în special în algoritmii de optimizare utilizați pentru a ajusta greutățile rețelelor neuronale. Acesta controlează cât de mari sunt pașii pe care îi face modelul pentru a-și ajusta parametrii în timpul procesului de antrenare, pe baza erorilor calculate în fiecare iterație.
+
+Cum funcționează Learning Rate:
+Gradient Descent:
+
+În timpul antrenării, un algoritm precum Stochastic Gradient Descent (SGD) actualizează parametrii modelului pentru a minimiza funcția de pierdere.
+Learning rate determină cât de mari sunt ajustările făcute la fiecare pas pe baza gradientului funcției de pierdere (erori).
+Formula de actualizare: În algoritmii de optimizare (ex. SGD), parametrii sunt actualizați astfel:
+
+Rolul Learning Rate:
+
+Dacă rata de învățare este prea mare:
+Modelul face pași mari și poate „sări” peste minimele funcției de pierdere, neajungând niciodată la un punct optim.
+Antrenarea devine instabilă și modelul nu converge (oscilează).
+Dacă rata de învățare este prea mică:
+Modelul face pași foarte mici și va necesita mai multe iterații pentru a se apropia de minimumul funcției de pierdere, ceea ce va face antrenarea lentă.
+În unele cazuri, modelul poate rămâne blocat într-un minim local și să nu ajungă la o soluție mai bună (minim global).
+Parametrii comuni ai ratei de învățare:
+În majoritatea aplicațiilor, learning rate este un număr pozitiv mic, tipic în intervalul:
+0.1, 0.01, 0.001, 0.0001 etc.
+Valorile foarte mari (ex. 0.1 sau 0.01) sunt utile la începutul antrenării pentru modele simple, dar pentru rețele neuronale mari, ratele de învățare mai mici (ex. 0.0001) sunt de obicei mai stabile.
+Ajustarea Learning Rate:
+Manual:
+De multe ori este necesar să experimentezi cu diverse valori ale ratei de învățare pentru a găsi un compromis bun între viteză și stabilitate.
+Learning Rate Scheduling:
+În loc să fie o valoare constantă pe tot parcursul antrenării, poți ajusta learning rate dinamic.
+Learning rate decay: Se reduce rata de învățare în timp, astfel încât la început pașii sunt mari, iar spre sfârșitul antrenării pașii devin mici.
+Cyclic Learning Rate: Learning rate-ul poate crește și descrește ciclic, ceea ce poate ajuta modelul să exploreze mai bine soluțiile de optimizare.
+Optimizatori avansați:
+Optimizatori precum Adam sau RMSProp ajustează learning rate automat în timpul antrenării, bazându-se pe estimări ale gradientului și variației acestuia, făcând procesul mai eficient fără a necesita ajustări manuale ale acestui parametru.
+Efecte ale Learning Rate asupra antrenării:
+Rata prea mare:
+Erorile se reduc prea lent sau modelul nu ajunge să învețe deloc.
+Ex: Pași mari sar peste soluții optime.
+Rata prea mică:
+Modelul converge foarte încet și poate rămâne blocat în minime locale.
+Exemplu vizual:
+Imaginează-ți o bilă care se rostogolește pe o vale. Learning rate este echivalentul forței care împinge bila. Dacă împingi prea tare (rată mare), bila sare peste locul cel mai jos al văii. Dacă împingi prea încet (rată mică), va dura mult până ce bila ajunge jos.
+
+Concluzie:
+Learning rate este un parametru fundamental care afectează performanța și viteza de antrenare a unui model. Alegerea sa optimă implică echilibrul între convergență rapidă și stabilitate, iar de cele mai multe ori necesită experimentare.

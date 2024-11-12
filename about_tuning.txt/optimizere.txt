@@ -1,0 +1,57 @@
+Optimizerele sunt algoritmi folosiți în învățarea automată pentru ajustarea parametrilor modelului astfel încât să minimizeze funcția de pierdere. Scopul lor este să ghideze procesul de antrenare, astfel încât modelul să învețe din date și să își îmbunătățească performanța.
+
+Rolul unui optimizer
+Un optimizer ajustează greutățile modelului în timpul antrenării pentru a reduce eroarea (funcția de pierdere).
+La fiecare pas al antrenării, optimizerul folosește gradientul funcției de pierdere pentru a decide cum să modifice greutățile, astfel încât pierderea să fie minimizată.
+Alegerea corectă a unui optimizer poate influența semnificativ viteza și eficiența procesului de antrenare.
+Principalele optimizere
+Gradient Descent (GD)
+
+Gradient Descent este cel mai simplu și fundamental optimizer.
+La fiecare pas de antrenare, calculează gradientul funcției de pierdere față de parametrii modelului și ajustează acești parametri într-o direcție care reduce pierderea.
+Gradientul este calculat pe întregul set de date, ceea ce poate fi costisitor din punct de vedere computațional pentru seturi de date mari.
+Stochastic Gradient Descent (SGD)
+
+În loc să folosească întregul set de date pentru a calcula gradientul, SGD face ajustări după fiecare eșantion de date sau după un batch (mini-batch).
+Acest lucru accelerează procesul de antrenare, dar poate introduce zgomot, deoarece optimizarea poate să oscileze din cauza variațiilor între batch-uri.
+Learning rate-ul este important pentru stabilitatea acestui optimizer.
+Adam (Adaptive Moment Estimation)
+
+Adam este unul dintre cei mai populari optimizatori folosiți în rețele neuronale și alte modele de învățare profundă.
+Combina RMSProp și Momentum pentru a ajusta rata de învățare în funcție de gradientul mediu și de variația gradientului.
+Folosește două momente (first moment – media gradientului, și second moment – pătratul gradientului), ceea ce face algoritmul mai stabil și mai rapid în convergență.
+Este adaptiv, ajustând automat rata de învățare pentru fiecare parametru, făcându-l ideal pentru rețele mari și complexe.
+Parametrii principali ai Adam sunt:
+learning_rate (rata de învățare)
+beta1 (coeficientul pentru prima medie a gradientului)
+beta2 (coeficientul pentru a doua medie a gradientului)
+RMSProp (Root Mean Square Propagation)
+
+RMSProp ajustează rata de învățare pentru fiecare parametru individual, pe baza mediei mobile a pătratului gradientului.
+Este util pentru probleme cu date zgomotoase sau pentru rețele neuronale recurente (RNN).
+RMSProp previne oscilarea gradientului în timpul optimizării, permițând un progres constant spre minimizarea funcției de pierdere.
+Adagrad (Adaptive Gradient Algorithm)
+
+Adagrad ajustează automat rata de învățare pentru fiecare parametru în funcție de cât de frecvent a fost actualizat acel parametru.
+Parametrii care sunt actualizați frecvent au rate de învățare mai mici, iar cei care sunt actualizați mai rar au rate mai mari.
+Adagrad funcționează bine pentru date sparse (cum ar fi datele din procesarea limbajului natural), dar are o problemă cunoscută: rata de învățare scade continuu și poate deveni prea mică pe măsură ce algoritmul înaintează.
+Adadelta
+
+O modificare a Adagrad care evită problema ratei de învățare care scade prea mult.
+Nu folosește rata de învățare globală și se bazează pe o medie mobilă a gradientului pentru a ajusta rata.
+AdamW (Adam with Weight Decay)
+
+O variantă a Adam care adaugă o componentă de weight decay (penalizarea greutăților) pentru a controla suprantrenarea.
+Este preferată în multe scenarii față de Adam, deoarece weight decay-ul aplicat corect poate îmbunătăți generalizarea modelului.
+Momentum
+
+Acest optimizer adaugă o "inertie" actualizărilor parametrilor, astfel încât optimizările să fie mai rapide și mai stabile.
+În loc să folosească doar gradientul curent, folosește o fracțiune din gradientul anterior pentru a "împinge" actualizarea într-o direcție consistentă.
+Alegerea unui optimizer
+Alegerea unui optimizer depinde de:
+
+Dimensiunea setului de date: Algoritmi precum SGD sau Adam sunt mai eficienți pe seturi mari de date, deoarece reduc costurile de calcul comparativ cu Gradient Descent clasic.
+Tipul de problemă: Rețelele neuronale mari și complexe, cum ar fi rețelele neuronale convoluționale (CNN) sau rețelele neuronale recurente (RNN), se descurcă bine cu optimizatori adaptivi precum Adam sau RMSProp.
+Tuning al parametrilor: Un optimizer precum Adam sau AdamW necesită mai puțin tuning decât algoritmi mai simpli precum SGD, ceea ce îi face o alegere populară pentru majoritatea aplicațiilor.
+Concluzie
+Optimizerele sunt instrumente esențiale pentru îmbunătățirea performanței unui model și pentru accelerarea procesului de antrenare. Fiecare optimizer are propriile avantaje și dezavantaje, iar alegerea optimizatorului corect depinde de specificul problemei tale și de natura setului de date pe care îl folosești. Algoritmi precum Adam și RMSProp sunt adesea alegerile preferate datorită capacității lor de a ajusta automat ratele de învățare și de a oferi stabilitate în antrenare.
