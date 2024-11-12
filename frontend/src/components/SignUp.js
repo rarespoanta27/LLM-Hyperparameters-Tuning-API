@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import { Box, Heading, Input, Button, VStack, FormControl, FormLabel, useToast} from '@chakra-ui/react';
+import { Box, Heading, Input, Button, Text, VStack, FormControl, FormLabel, useToast, Checkbox, Link } from '@chakra-ui/react';
 import axios from 'axios';
+import { Link as RouterLink } from 'react-router-dom';
 
 const SignUp = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isTermsAccepted, setIsTermsAccepted] = useState(false);
   const toast = useToast();
 
   const validateEmail = (email) => {
@@ -81,7 +83,31 @@ const SignUp = () => {
           <FormLabel color="gray.300">Parolă</FormLabel>
           <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Introduceți parola" />
         </FormControl>
-        <Button colorScheme="blue" width="full" onClick={handleSignUp}>Înregistrare</Button>
+
+        {/* Checkbox pentru Terms & Conditions */}
+        <FormControl display="flex" alignItems="center">
+          <Checkbox
+            isChecked={isTermsAccepted}
+            onChange={(e) => setIsTermsAccepted(e.target.checked)}
+            colorScheme="blue"
+          >
+            <Text color="gray.300" fontSize="sm" ml={2}>
+              By creating an account, you accept the{' '}
+              <Link as={RouterLink} to="/terms-and-conditions" color="blue.400" textDecoration="underline">
+                Terms & Conditions
+              </Link>.
+            </Text>
+          </Checkbox>
+        </FormControl>
+
+        <Button
+          colorScheme="blue"
+          width="full"
+          onClick={handleSignUp}
+          isDisabled={!isTermsAccepted}
+        >
+          Înregistrare
+        </Button>
       </VStack>
     </Box>
   );

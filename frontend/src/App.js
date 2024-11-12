@@ -21,6 +21,7 @@ import SignUp from './components/SignUp';
 import Tuning from './components/Tuning';
 import AccountDetails from './components/AccountDetails';
 import PrivacyPolicy from './components/PrivacyPolicy';
+import TermsAndConditions from './components/terms-and-conditions';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -53,7 +54,7 @@ function App() {
                 </MenuButton>
                 <MenuList>
                   <MenuItem>
-                    <Link to="/account-details">Detalii cont</Link>
+                    <Link to="/account-details">Account Details</Link>
                   </MenuItem>
                   <MenuItem>
                     <Link to="/privacy-policy">Privacy Policy</Link>
@@ -73,6 +74,7 @@ function App() {
 
           {/* Routes */}
           <Routes>
+            <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
             <Route path="/introduction" element={<Introduction />} />
             <Route path="/learn-tuning" element={<LearnTuning />} />
             <Route path="/about-us" element={<AboutUs />} />

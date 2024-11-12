@@ -29,7 +29,7 @@ const Introduction = () => {
           animate={{ opacity: 1, x: 0 }}
           transition={{ delay: 0.2, duration: 0.8 }}
         >
-         Bine ați venit pe platforma de optimizare a hiperparametrilor pentru LLM
+         Welcome to the Hyperparameter Optimization Platform for LLM
         </Heading>
         <Text
           fontSize="lg"
@@ -39,7 +39,7 @@ const Introduction = () => {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.4, duration: 0.8 }}
         >
-          Această platformă permite utilizatorilor să ajusteze modele mari de limbaj (LLM) prin configurarea hiperparametrilor esențiali precum rata de învățare, mărimea lotului, numărul de epoci, funcțiile de pierdere și optimizatorii.
+          This platform allows users to fine-tune large language models (LLMs) by configuring essential hyperparameters such as learning rate, batch size, number of epochs, loss functions, and optimizers.
         </Text>
         <Text
           mt={4}
@@ -50,7 +50,7 @@ const Introduction = () => {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.6, duration: 0.8 }}
         >
-          Scopul nostru este să simplificăm procesul de optimizare a modelelor, oferind o interfață ușor de utilizat pentru a experimenta diferite configurații și a obține cele mai bune rezultate pentru proiectele dumneavoastră de inteligență artificială. Cu această platformă, puteți rula mai multe încercări, ajusta parametrii și explora configurările optime pentru modelele dumneavoastră de învățare automată, fără a necesita cunoștințe avansate de infrastructură.
+          Our goal is to simplify the process of model optimization, providing an easy-to-use interface for experimenting with different configurations and achieving the best results for your AI projects. With this platform, you can run multiple trials, adjust parameters, and explore optimal configurations for your machine learning models without requiring advanced infrastructure knowledge.
         </Text>
         <Text
           mt={4}
@@ -61,7 +61,7 @@ const Introduction = () => {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.8, duration: 0.8 }}
         >
-          Fie că sunteți un pasionat de învățare automată sau un profesionist, platforma noastră este concepută pentru a vă ajuta să obțineți maximum din modelele dumneavoastră cu ușurință.
+          Whether you're a machine learning enthusiast or a professional, our platform is designed to help you get the most out of your models with ease.
         </Text>
       </MotionBox>
   );

@@ -47,7 +47,7 @@ class HyperParams(BaseModel):
 
 def create_user(name, email, password):
     if users_collection.find_one({"email": email}):
-        return {"error": "Un utilizator cu acest email există deja."}
+        return {"error": "This email already exists!"}
 
     hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
     user = {
@@ -56,7 +56,7 @@ def create_user(name, email, password):
         "password": hashed_password.decode('utf-8')
     }
     users_collection.insert_one(user)
-    return {"message": "Utilizator creat cu succes!"}
+    return {"message": "Account created succesfully!"}
 
 def verify_user(email, password):
     user = users_collection.find_one({"email": email})
@@ -77,8 +77,8 @@ def signup(user: UserCreate):
 def login(user: UserLogin):
     verified_user = verify_user(user.email, user.password)
     if not verified_user:
-        raise HTTPException(status_code=400, detail="Credențiale invalide")
-    return {"message": "Autentificare reușită", "user": verified_user["email"]}
+        raise HTTPException(status_code=400, detail="Invalid credetianls!")
+    return {"message": "Login succesfull!", "user": verified_user["email"]}
 
 class TextDataset(Dataset):
     def __init__(self, tokenizer, inputs, targets):
@@ -109,7 +109,7 @@ def train_model(model, dataloader, learning_rate, epochs, loss_function, optimiz
         elif loss_function == "Huber":
             criterion = nn.SmoothL1Loss()
         else:
-            raise ValueError(f"Funcție de pierdere nesuportată: {loss_function}")
+            raise ValueError(f"Unsuported loss function: {loss_function}")
 
         if optimizer_name == "AdamW":
             optimizer = optim.AdamW(model.parameters(), lr=learning_rate)
@@ -124,7 +124,7 @@ def train_model(model, dataloader, learning_rate, epochs, loss_function, optimiz
         elif optimizer_name == "Adagrad":
             optimizer = optim.Adagrad(model.parameters(), lr=learning_rate)
         else:
-            raise ValueError(f"Optimizator nesuportat: {optimizer_name}")
+            raise ValueError(f"Unsuported optimizator: {optimizer_name}")
 
         model.to(device)
         history = []
@@ -162,13 +162,13 @@ def train_model(model, dataloader, learning_rate, epochs, loss_function, optimiz
 
         return {"loss": avg_loss, "loss_history": history}
     except Exception as e:
-        print(f"Eroare în timpul antrenării modelului: {e}")
+        print(f"Erorr: {e}")
         return {"error": str(e)}
 
 @app.post("/tune/")
 async def tune_model(params: HyperParams):
     try:
-        print(f"Se încarcă modelul: {params.model_identifier}")
+        print(f"The model is loading: {params.model_identifier}")
         tokenizer = AutoTokenizer.from_pretrained(params.model_identifier)
         model = AutoModelForCausalLM.from_pretrained(params.model_identifier)
 
@@ -204,7 +204,7 @@ async def tune_model(params: HyperParams):
         )
 
         return {
-            "result": "Tuning-ul modelului s-a finalizat",
+            "result": "The tuning is done!",
             "loss": results["loss"],
             "loss_history": results["loss_history"],
             "best_params": {
